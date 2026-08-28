@@ -250,9 +250,236 @@ http://localhost:5000
 
 Create a `.env` file inside the `server` folder.
 
-Example:
+Add the following:
 
 ```env
 PORT=5000
-MONGO
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 ```
+
+Do not upload the `.env` file to GitHub.
+
+The `.env` file contains private database credentials and authentication secrets.
+
+---
+
+## 🗄️ MongoDB
+
+The application uses MongoDB for storing:
+
+* Users
+* Videos
+* Channels
+* Comments
+
+Mongoose is used to connect the Node.js backend with MongoDB.
+
+---
+
+## 🔑 Authentication Flow
+
+1. User registers using username, email, and password.
+2. Password is hashed using bcryptjs.
+3. User logs in using email and password.
+4. Backend verifies the credentials.
+5. Backend generates a JWT token.
+6. Token is stored on the frontend.
+7. Protected API requests include the JWT token.
+8. Authentication middleware verifies the token before allowing protected operations.
+
+---
+
+# 📡 API Endpoints
+
+## Authentication
+
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| POST   | `/api/auth/register` | Register a new user |
+| POST   | `/api/auth/login`    | Login user          |
+
+---
+
+## Videos
+
+| Method | Endpoint                  | Description                            |
+| ------ | ------------------------- | -------------------------------------- |
+| GET    | `/api/videos`             | Fetch videos                           |
+| GET    | `/api/videos/:id`         | Fetch a single video                   |
+| PUT    | `/api/videos/:id/view`    | Increase video views                   |
+| PUT    | `/api/videos/:id/like`    | Like or remove like from a video       |
+| PUT    | `/api/videos/:id/dislike` | Dislike or remove dislike from a video |
+| PUT    | `/api/videos/:id`         | Update video                           |
+| DELETE | `/api/videos/:id`         | Delete video                           |
+
+---
+
+## Channels
+
+| Method | Endpoint                      | Description                      |
+| ------ | ----------------------------- | -------------------------------- |
+| POST   | `/api/channels`               | Create a channel                 |
+| GET    | `/api/channels/my-channel`    | Get the logged-in user's channel |
+| GET    | `/api/channels/:id`           | Get channel information          |
+| PUT    | `/api/channels/:id/subscribe` | Subscribe or unsubscribe         |
+| PUT    | `/api/channels/:id`           | Update channel                   |
+
+---
+
+## Comments
+
+| Method | Endpoint                       | Description              |
+| ------ | ------------------------------ | ------------------------ |
+| POST   | `/api/comments`                | Add a comment            |
+| GET    | `/api/comments/video/:videoId` | Get comments for a video |
+| PUT    | `/api/comments/:id`            | Update a comment         |
+| DELETE | `/api/comments/:id`            | Delete a comment         |
+
+Protected endpoints require a valid JWT token.
+
+---
+
+## 🔎 Search and Filter
+
+### Search
+
+Users can search videos using the header search bar.
+
+The application filters videos based on their title.
+
+### Category Filter
+
+Users can select category buttons to display videos belonging to the selected category.
+
+---
+
+## ▶️ Video Interaction
+
+Users can:
+
+* Open a video from the home page
+* Watch a video
+* Increase the view count
+* Like a video
+* Dislike a video
+* Subscribe to a channel
+* Read comments
+* Add comments
+* Edit their comments
+* Delete their comments
+
+---
+
+## 📺 Channel
+
+Authenticated users can create a channel.
+
+A channel contains:
+
+* Channel name
+* Channel description
+* Channel banner
+* Subscriber count
+* Channel videos
+
+The channel page displays videos associated with the channel.
+
+---
+
+## 📱 Responsive Design
+
+The application includes responsive layouts for:
+
+* Desktop screens
+* Tablets
+* Mobile phones
+
+CSS media queries are used to adjust:
+
+* Video grid columns
+* Sidebar layout
+* Search bar
+* Video player
+* Comments
+* Channel page
+* Forms and buttons
+
+---
+
+## ▶️ Running the Complete Application
+
+Open two terminals.
+
+### Terminal 1 – Backend
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+### Terminal 2 – Frontend
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Then open the frontend URL provided by Vite.
+
+---
+
+## 🔒 Security
+
+The project implements:
+
+* JWT authentication
+* Password hashing with bcryptjs
+* Protected backend routes
+* Authorization checks for user-owned comments
+* Authorization checks for user-owned videos
+* Authorization checks for channel ownership
+* Environment variables for sensitive configuration
+
+---
+
+## 📌 Project Purpose
+
+This project was developed as a Full Stack MERN application to demonstrate practical knowledge of:
+
+* React frontend development
+* REST API development
+* Node.js and Express.js
+* MongoDB database integration
+* JWT authentication
+* CRUD operations
+* API integration using Axios
+* Responsive web design
+* Git and GitHub
+
+---
+
+## 🎥 Project Demo
+
+A short video demonstration can showcase:
+
+1. User registration
+2. User login
+3. Home page
+4. Search functionality
+5. Category filtering
+6. Video playback
+7. Like/dislike
+8. Subscribe functionality
+9. Comment creation
+10. Comment editing
+11. Comment deletion
+12. Channel creation
+13. Channel page
+14. Responsive design
+15. Logout
+
+---
+
