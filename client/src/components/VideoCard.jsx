@@ -10,11 +10,18 @@ const VideoCard = ({ video }) => {
     >
 
       {/* Video thumbnail */}
-      <img
-        src={video.thumbnailUrl}
-        alt={video.title}
-        className="video-thumbnail"
-      />
+     <img
+      src={
+        video.thumbnailUrl ||
+        "https://via.placeholder.com/320x180?text=No+Thumbnail"
+      }
+      alt={video.title || "Video thumbnail"}
+      className="video-thumbnail"
+      onError={(event) => {
+        event.currentTarget.src =
+          "https://via.placeholder.com/320x180?text=No+Thumbnail";
+      }}
+     />
 
       {/* Video information */}
       <div className="video-info">
