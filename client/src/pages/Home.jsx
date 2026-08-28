@@ -78,8 +78,13 @@ const Home = ({ searchText }) => {
       {/* Loading message */}
       {loading && <p>Loading videos...</p>}
 
-      {/* Error message */}
-      {error && <p>{error}</p>}
+      {/* Error message and retry button */}
+      {error && (
+        <div className="error-message">
+          <p>{error}</p>
+          <button onClick={fetchVideos}>Try Again</button>
+        </div>
+      )}
 
       {/* Video grid */}
       {!loading && !error && (
